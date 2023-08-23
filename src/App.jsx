@@ -9,7 +9,15 @@ class App extends React.Component {
   }
 
   fetchAdvice = () => {
-    axios.get("https://api.adviceslip.com/advice");
+    axios
+      .get("https://api.adviceslip.com/advice")
+      .then((result) => {
+        const { advice } = result.data.slip;
+        this.setState({ advice });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   render() {
